@@ -2,17 +2,38 @@ import { Component, signal } from '@angular/core';
 import { Cliente } from '../../model/clientes';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
+import {FormsModule} from '@angular/forms'
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [JsonPipe, FormsModule],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css'
 })
 export class ClientesComponent {
 
-  public Titulo = "Administracion de clientes";
+  public Titulo = "Administracion de Clientes";
+  
+  public clienteId: string = '';
+  public nombreCliente: string = '';
+  public cedulaCliente: string = '';
+  public telefonoCliente: string = '';
+  public correoCliente: string = ''; 
+  public contrasenaCliente: string = '';
+  
+
+  printInputs() {
+    console.log('clienteId:', this.clienteId);
+    console.log('nombreCliente:', this.nombreCliente);
+    console.log('cedulaCliente:', this.cedulaCliente);
+    console.log('telefonoCliente:', this.telefonoCliente);    
+    console.log('correoCliente:', this.correoCliente);    
+    console.log('contrasenaCliente:', this.contrasenaCliente);    
+  }
+
+
+
   public Clientes = signal<Cliente[]>([]);
 
   constructor(private http: HttpClient) {
@@ -60,19 +81,23 @@ export class ClientesComponent {
   public agregarCliente(event:  Event) {
     let tag = event.target as HTMLInputElement
     let cuerpo = {
-      NombreCliente: tag.value,
-      CedulaCliente: tag.value,
-      TelefonoCliente: tag.value,
-      CorreoCliente: tag.value,
-      ContrasenaCliente: tag.value,
+      NombreCliente: this.nombreCliente,
+      CedulaCliente: 2323232,//this.cedulaCliente,
+      TelefonoCliente: 2323232, //this.telefonoCliente,
+      CorreoCliente: this.correoCliente,
+      ContrasenaCliente: this.contrasenaCliente,
     }
     this.http.post('http://localhost/clientes', cuerpo).subscribe(
       () => {
       // const nuevaProvincia = Provincia as Provincia;
-      this.Clientes.update((Clientes) => [...Clientes, cuerpo]);
+     // this.Clientes.update((Clientes) => [...Clientes, cuerpo]);
     }
   );
   };
 
-
+  public borrarCliente() {
+    this.http.delete('http://localhost/clientes/' + this.clienteId).subscribe(() => {
+     //this.Clientes.update(Clientes) => Clientes.filter((Cliente) => Cliente,this.clienteId !== this.clienteId));
+    });
+  };
 }

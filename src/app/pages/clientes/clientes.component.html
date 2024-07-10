@@ -1,8 +1,60 @@
-<br/>
-<br/>
-<h2>{{Titulo}}</h2>
-<pre>
-    <code>
-        {{ Clientes() | json}}
-    </code>
-</pre>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Formulario Cliente</title>
+     <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="clientes.component.css">
+
+</head>
+<body>
+
+    <h2>{{Titulo}}</h2>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="clienteId">clienteId:</label>
+            <input id="clienteId" [(ngModel)]="clienteId" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="nombreCliente">nombreCliente</label>
+            <input id="nombreCliente" [(ngModel)]="nombreCliente" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="cedulaCliente">cedulaCliente</label>
+            <input id="cedulaCliente" [(ngModel)]="cedulaCliente" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="telefonoCliente">telefonoCliente</label>
+            <input id="telefonoCliente" [(ngModel)]="telefonoCliente" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="correoCliente">correo Cliente</label>
+            <input id="correoCliente" [(ngModel)]="correoCliente" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="contrasenaCliente">Contraseña Cliente</label>
+            <input id="contrasenaCliente" [(ngModel)]="contrasenaCliente" type="text" />
+        </div>
+       
+
+        <div class="form-group buttons">
+            <button (click)="printInputs()">Imprimir Consola</button>
+            <button (click)="agregarCliente($event)">Agregar Cliente</button>
+            <button (click)="borrarCliente()">Borrar Cliente</button>
+        </div>
+    </div>
+
+    <pre>
+        <code>
+            {{ Clientes() | json }}
+        </code>
+    </pre>
+
+</body>
+</html>
