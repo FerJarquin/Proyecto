@@ -1,8 +1,52 @@
-<br/>
-<br/>
-<h2>{{Titulo}}</h2>
-<pre>
-    <code>
-        {{ Servicios() | json}}
-    </code>
-</pre>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Formulario Servicios</title>
+     <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="servicios.component.css">
+
+</head>
+<body>
+
+    <h2>{{Titulo}}</h2>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="servicioId">Servicio Id:</label>
+            <input id="servicioId" [(ngModel)]="servicioId" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="nombreServicio">Nombre Servicio:</label>
+            <input id="nombreServicio" [(ngModel)]="nombreServicio" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcionServicio">Descripcion Servicio</label>
+            <input id="descripcionServicio" [(ngModel)]="descripcionServicio" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="empleadoId">Empleado Id:</label>
+            <input id="empleadoId" [(ngModel)]="empleadoId" type="text" />
+        </div>
+
+       
+
+        <div class="form-group buttons">
+            <button (click)="printInputs()">Imprimir Consola</button>
+            <button (click)="agregarServicio($event)">Agregar Servicio</button>
+            <button (click)="borrarServicio()">Borrar Servicio</button>
+
+        </div>
+    </div>
+
+    <pre>
+        <code>
+            {{ Servicios() | json }}
+        </code>
+    </pre>
+
+</body>
+</html>
