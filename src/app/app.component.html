@@ -1,13 +1,39 @@
-<nav class="dropdownmenu"> 
-  <ul>
-    <li><a href="/">Inicio</a></li>
-    <li><a href="/servicios">Servicios</a></li>
-    <li><a href="/clientes">Clientes</a></li>
-    <li><a href="/empleados">Empleados</a></li>
-    <li><a href="/solicitudes">Solicitudes</a></li>
-    <li><a href="/programaciones">Programaciones</a></li>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="app.component.css">
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+</head>
+<body>
+
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ContruLFC</label>
+        <ul>
+            <li><a class="active" href="#">Inicio</a></li>
+            <li><a href="/servicios">Servicios</a></li>
+            <li><a href="/clientes">Clientes</a></li>
+            <li><a href="/empleados">Empleados</a></li>
+            <li><a href="/usuarios">Usuarios</a></li>
+            <li><a href="/solicitudes">Solicitudes</a></li>
+            <li><a href="/programaciones">Programaciones</a></li>
+        
+
+        </ul>
+       
+    </nav>
     
-  </ul>
-</nav>
+    
+</body>
+</html>
 
 <router-outlet/>

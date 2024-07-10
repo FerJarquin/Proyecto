@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Formulario Responsivo</title>
+     <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="usuarios.component.css">
+
+</head>
+<body>
+
+    <h2>{{Titulo}}</h2>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="usuarioId">Usuario Id:</label>
+            <input id="usuarioId" [(ngModel)]="usuarioId" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="nombreUsuario">Nombre Usuario:</label>
+            <input id="nombreUsuario" [(ngModel)]="nombreUsuario" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="correoUsuario">Correo Usuario:</label>
+            <input id="correoUsuario" [(ngModel)]="correoUsuario" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="contrasenaUsuario">Contraseña Usuario:</label>
+            <input id="contrasenaUsuario" [(ngModel)]="contrasenaUsuario" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="rolUsuario">Rol Usuario:</label>
+            <select id="rolUsuario" [(ngModel)]="rolUsuario">
+                <option value="Administrador">Administrador</option>
+                <option value="Asistente">Asistente</option>
+                <option value="Auditoria">Auditoria</option>
+            </select>
+        </div>
+
+        <div class="form-group buttons">
+            <button (click)="printInputs()">Imprimir Consola</button>
+            <button (click)="agregarUsuario($event)">Agregar Usuario</button>
+            <button (click)="borrarUsuario()">Borrar Usuario</button>
+            <button (click)="borrarUsuario()">Actulizar</button>
+
+
+
+        </div>
+    </div>
+
+    <pre>
+        <code>
+            {{ Usuarios() | json }}
+        </code>
+    </pre>
+
+</body>
+</html>

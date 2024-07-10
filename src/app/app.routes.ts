@@ -4,6 +4,7 @@ import {ServiciosComponent} from './pages/servicios/servicios.component'
 import {EmpleadosComponent} from './pages/empleados/empleados.component'
 import {SolicitudesComponent} from './pages/solicitudes/solicitudes.component'
 import {ProgramacionesComponent} from './pages/programaciones/programaciones.component'
+import {UsuariosComponent} from './pages/usuarios/usuarios.component'
 
 
 export const routes: Routes = [
@@ -26,5 +27,9 @@ export const routes: Routes = [
     {
         path: 'programaciones',
         component: ProgramacionesComponent, 
+    },
+    {
+        path: 'usuarios',
+        component: UsuariosComponent, 
     }
 ];
