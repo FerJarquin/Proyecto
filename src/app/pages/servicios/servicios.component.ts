@@ -74,7 +74,7 @@ export class ServiciosComponent {
     let cuerpo = {
       NombreServicio: this.nombreServicio,
       DescripcionServicio:  this.descripcionServicio,
-      EmpleadoId: 6 //this.empleadoId
+      EmpleadoId: this.empleadoId
     }
     this.http.post('http://localhost/servicios/', cuerpo).subscribe(
       () => {

@@ -1,8 +1,46 @@
-<br/>
-<br/>
-<h2>{{Titulo}}</h2>
-<pre>
-    <code>
-        {{ Empleados() | json}}
-    </code>
-</pre>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Formulario Cliente</title>
+     <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="empleados.component.css">
+
+</head>
+<body>
+
+    <h2>{{Titulo}}</h2>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="empleadoId">empleadoId:</label>
+            <input id="empleadoId" [(ngModel)]="empleadoId" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="nombreEmpleado">nombreEmpleado</label>
+            <input id="nombreEmpleado" [(ngModel)]="nombreEmpleado" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="telefonoEmpleado">telefonoEmpleado</label>
+            <input id="telefonoEmpleado" [(ngModel)]="telefonoEmpleado" type="text" />
+        </div>
+
+     
+
+        <div class="form-group buttons">
+            <button (click)="printInputs()">Imprimir Consola</button>
+            <button (click)="agregarEmpleado($event)">Agregar Empleado</button>
+
+        </div>
+    </div>
+
+    <pre>
+        <code>
+            {{ Empleados() | json }}
+        </code>
+    </pre>
+
+</body>
+</html>

@@ -82,15 +82,15 @@ export class ClientesComponent {
     let tag = event.target as HTMLInputElement
     let cuerpo = {
       NombreCliente: this.nombreCliente,
-      CedulaCliente: 2323232,//this.cedulaCliente,
-      TelefonoCliente: 2323232, //this.telefonoCliente,
+      CedulaCliente: this.cedulaCliente,
+      TelefonoCliente: this.telefonoCliente,
       CorreoCliente: this.correoCliente,
       ContrasenaCliente: this.contrasenaCliente,
     }
     this.http.post('http://localhost/clientes', cuerpo).subscribe(
       () => {
       // const nuevaProvincia = Provincia as Provincia;
-     // this.Clientes.update((Clientes) => [...Clientes, cuerpo]);
+     this.Clientes.update((Clientes) => [...Clientes, cuerpo]);
     }
   );
   };

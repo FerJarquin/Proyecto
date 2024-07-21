@@ -36,11 +36,15 @@ body { font-family:Arial, Helvetica, sans-serif }
       nav ul{ 
           float: right; 
           margin-right:20px; 
+          list-style-type: none;
+          position: relative;
       }
           nav ul li{ 
               display: inline-block; 
               line-height:80px;
               margin: 0 5px; 
+              position: absolute;
+
           }
               nav ul li a{
                   color: white;
@@ -111,4 +115,45 @@ body { font-family:Arial, Helvetica, sans-serif }
           left: 0;
       }
 
+}
+
+/*--------------------------drop*/
+  /* Estilos adicionales para el menú desplegable */
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    position: relative;
+    display: inline-block;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    display: block;
+}
+
+nav ul li ul li a {
+    color: black;
+    padding: 2px 5px;
+    text-decoration: none;
+    display: block;
+}
+
+nav ul li ul li a:hover {
+    background-color: #DB7E3A;
 }

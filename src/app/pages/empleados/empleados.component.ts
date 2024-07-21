@@ -2,17 +2,30 @@ import { Component, signal } from '@angular/core';
 import { Empleado } from '../../model/empleados';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
+import {FormsModule} from '@angular/forms'
 
 @Component({
   selector: 'app-empleados',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [JsonPipe,FormsModule ],
   templateUrl: './empleados.component.html',
   styleUrl: './empleados.component.css'
 })
 
 export class EmpleadosComponent {
   public Titulo = "Administracion de empleados";
+
+  public empleadoId: String = '';
+  public nombreEmpleado: String = '';
+  public telefonoEmpleado: String = '';
+
+  printInputs() {
+    console.log('empleadoId:', this.empleadoId);
+    console.log('nombreEmpleado:', this.nombreEmpleado);
+    console.log('telefonoEmpleado:', this.telefonoEmpleado);
+   }
+
+
   public Empleados = signal<Empleado[]>([]); 
 
   constructor(private http: HttpClient) {
@@ -48,5 +61,24 @@ export class EmpleadosComponent {
   };
   this.Empleados.update((Empleados) => [...Empleados, nuevaEmpleado]);
 };
+
+public agregarEmpleado(event:  Event) {
+  let tag = event.target as HTMLInputElement
+  let cuerpo = {
+ 
+    nombreEmpleado: this.nombreEmpleado,
+    telefonoEmpleado: this.telefonoEmpleado
+  }
+  this.http.post('http://localhost/empleados', cuerpo).subscribe(
+    () => {
+    // const nuevaProvincia = Provincia as Provincia;
+   //this.Empleados.update((Empleados) => [...Empleados, cuerpo]);
+  }
+);
+};
+
+
+
+
 
 }
