@@ -13,25 +13,25 @@
     <h2>{{Titulo}}</h2>
     <div class="form-container">
         <div class="form-group">
-            <label for="empleadoId">empleadoId:</label>
+            <label for="empleadoId">Empleado ID:</label>
             <input id="empleadoId" [(ngModel)]="empleadoId" type="text" />
         </div>
 
         <div class="form-group">
-            <label for="nombreEmpleado">nombreEmpleado</label>
+            <label for="nombreEmpleado">Nombre de Empleado</label>
             <input id="nombreEmpleado" [(ngModel)]="nombreEmpleado" type="text" />
         </div>
 
         <div class="form-group">
-            <label for="telefonoEmpleado">telefonoEmpleado</label>
+            <label for="telefonoEmpleado">Telefono Empleado</label>
             <input id="telefonoEmpleado" [(ngModel)]="telefonoEmpleado" type="text" />
         </div>
 
-     
 
         <div class="form-group buttons">
-            <button (click)="printInputs()">Imprimir Consola</button>
             <button (click)="agregarEmpleado($event)">Agregar Empleado</button>
+            <button (click)=" actualizarEmpleado($event)">Actualizar Empleado</button>
+            <button (click)="borrarEmpleado()">Borrar Empleado</button>
 
         </div>
     </div>

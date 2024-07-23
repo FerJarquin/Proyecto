@@ -25,7 +25,6 @@ export class EmpleadosComponent {
     console.log('telefonoEmpleado:', this.telefonoEmpleado);
    }
 
-
   public Empleados = signal<Empleado[]>([]); 
 
   constructor(private http: HttpClient) {
@@ -66,9 +65,10 @@ public agregarEmpleado(event:  Event) {
   let tag = event.target as HTMLInputElement
   let cuerpo = {
  
-    nombreEmpleado: this.nombreEmpleado,
-    telefonoEmpleado: this.telefonoEmpleado
+    NombreEmpleado: this.nombreEmpleado,
+    TelefonoEmpleado: this.telefonoEmpleado
   }
+
   this.http.post('http://localhost/empleados', cuerpo).subscribe(
     () => {
     // const nuevaProvincia = Provincia as Provincia;
@@ -77,6 +77,29 @@ public agregarEmpleado(event:  Event) {
 );
 };
 
+public actualizarEmpleado( event:  Event) {
+  
+  let tag = event.target as HTMLInputElement
+  let cuerpo = {
+    NombreEmpleado: this.nombreEmpleado,
+    TelefonoEmpleado: this.telefonoEmpleado
+  }
+  console.log(cuerpo)
+
+ this.http.put('http://localhost/empleados/' +  this.empleadoId, cuerpo).subscribe(
+    () => {
+    // const nuevaProvincia = Provincia as Provincia;
+   //this.Empleados.update((Empleados) => [...Empleados, cuerpo]);
+  }
+);
+};
+
+
+public borrarEmpleado() {
+  this.http.delete('http://localhost/empleados/' + this.empleadoId).subscribe(() => {
+   // this.Usuarios.update(Usuarios) => Usuarios.filter((Usuario) => Usuario.UsuarioId !== this.usuarioId));
+  });
+};
 
 
 

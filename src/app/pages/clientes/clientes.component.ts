@@ -100,4 +100,25 @@ export class ClientesComponent {
      //this.Clientes.update(Clientes) => Clientes.filter((Cliente) => Cliente,this.clienteId !== this.clienteId));
     });
   };
+
+  public actualizarCliente( event:  Event) {
+  
+    let tag = event.target as HTMLInputElement
+    let cuerpo = {
+      NombreCliente: this.nombreCliente,
+      CedulaCliente: this.cedulaCliente,
+      TelefonoCliente: this.telefonoCliente,
+      CorreoCliente: this.correoCliente,
+      ContrasenaCliente: this.contrasenaCliente,
+    }
+    console.log(cuerpo)
+  
+   this.http.put('http://localhost/clientes/' +  this.clienteId, cuerpo).subscribe(
+      () => {
+      // const nuevaProvincia = Provincia as Provincia;
+     //this.Empleados.update((Empleados) => [...Empleados, cuerpo]);
+    }
+  );
+  };
+
 }
