@@ -36,6 +36,7 @@ export class ServiciosComponent {
     this.metodoGETServicios();
   };
 
+  
   public metodoGETServicios() {
     let cuerpo = {};
     this.http.get('http://localhost/servicios', cuerpo)
@@ -89,4 +90,23 @@ export class ServiciosComponent {
      // this.Usuarios.update(Usuarios) => Usuarios.filter((Usuario) => Usuario.UsuarioId !== this.usuarioId));
     });
   };
+
+  public actualizarServicio( event:  Event) {
+  
+    let tag = event.target as HTMLInputElement
+    let cuerpo = {
+      NombreServicio: this.nombreServicio,
+      DescripcionServicio: this.descripcionServicio,
+      EmpleadoId: this.empleadoId
+    }
+    console.log(cuerpo)
+  
+   this.http.put('http://localhost/servicios/' +  this.servicioId, cuerpo).subscribe(
+      () => {
+      // const nuevaProvincia = Provincia as Provincia;
+     //this.Empleados.update((Empleados) => [...Empleados, cuerpo]);
+    }
+  );
+  };
+
 }
