@@ -16,11 +16,11 @@ export class UsuariosComponent {
  
   public Titulo = "Administracion de usuarios";
 
-  public nombreUsuario: String = '';
-  public correoUsuario: String = '';
-  public contrasenaUsuario: String = '';
-  public rolUsuario: String = '';
-  public usuarioId: String = '';
+  public nombreUsuario: string = '';
+  public correoUsuario: string = '';
+  public contrasenaUsuario: string = '';
+  public rolUsuario: string = '';
+  public usuarioId: string = '';
 
   printInputs() {
     console.log('nombreUsuario:', this.nombreUsuario);
@@ -93,5 +93,25 @@ public borrarUsuario() {
   });
 };
 
+
+public actualizarUsuario( event:  Event) {
+  
+  let tag = event.target as HTMLInputElement
+  let cuerpo = {
+    NombreUsuario: this.nombreUsuario,
+    CorreoUsuario: this.correoUsuario, 
+    ContrasenaUsuario: this.contrasenaUsuario,
+    Rol: this.rolUsuario, 
+ 
+  }
+  console.log(cuerpo)
+
+ this.http.put('http://localhost/usuarios/' +  this.usuarioId, cuerpo).subscribe(
+    () => {
+    //const nuevaUsuario = Usuario as Usuario;
+   this.Usuarios.update((Usuarios) => [...Usuarios, cuerpo]);
+  }
+);
+};
 
 }
