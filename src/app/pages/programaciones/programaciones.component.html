@@ -1,8 +1,58 @@
-<br/>
-<br/>
-<h2>{{Titulo}}</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Formulario Programaciones</title>
+     <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="programaciones.component.css">
+
+</head>
+<body>
+
+    <h2>{{Titulo}}</h2>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="programacionId">Programacion ID:</label>
+            <input id="programacionId" [(ngModel)]="programacionId" type="text" />
+        </div>
+
+        <div class="form-group">
+            <label for="usuarioId">Usuario ID:</label>
+            <input id="usuarioId" [(ngModel)]="usuarioId" type="text" />
+        </div>
+       
+
+        <div class="form-group">
+            <label for="estadoProgramacion">Estado Programacion:</label>
+            <select id="estadoProgramacion" [(ngModel)]="estadoProgramacion">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Aprobada">Aprobada</option>
+                <option value="Denegada">Denegada</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="solicitudId">solicitud Id:</label>
+            <input id="solicitudId" [(ngModel)]="solicitudId" type="text" />
+        </div>
+
+        <div class="form-group buttons">
+            <button (click)="agregarProgramacion($event)">Agregar Usuario</button>
+            <button (click)="actualizarProgramacion($event)">Actulizar Usuario</button>
+            <button (click)="borrarProgramacion()">Borrar Usuario</button>
+
+
+
+
+        </div>
+    </div>
+
 <pre>
     <code>
         {{ Programaciones() | json}}
     </code>
 </pre>
+
+</body>
+</html>

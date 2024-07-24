@@ -2,12 +2,14 @@ import { Component, signal } from '@angular/core';
 import { Programacion } from '../../model/programaciones';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
+import {FormsModule} from '@angular/forms'
+
 
 
 @Component({
   selector: 'app-programaciones',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [JsonPipe, FormsModule],
   templateUrl: './programaciones.component.html',
   styleUrl: './programaciones.component.css'
 })
@@ -15,6 +17,23 @@ import { HttpClient } from '@angular/common/http';
 export class ProgramacionesComponent {
 
   public Titulo = "Administracion de programaciones de citas";
+
+  public programacionId: string = '';
+  public usuarioId: string = '';
+  public estadoProgramacion: string = '';
+  public solicitudId: string = '';
+  public actualizadoEn: string = '';
+
+
+ 
+
+  printInputs() {
+    console.log('programacionId:', this.programacionId);
+    console.log('estadoProgramacion:', this.estadoProgramacion);
+    console.log('solicitudId:', this.solicitudId);
+  
+  }
+
   public Programaciones = signal<Programacion[]>([]); 
   
   constructor(private http: HttpClient) {
@@ -52,10 +71,50 @@ export class ProgramacionesComponent {
     ,UsuarioId: UsuarioId 
     ,EstadoProgramacion: EstadoProgramacion 
     ,SolicitudId:SolicitudId 
-
   };
   this.Programaciones.update((Programaciones) => [...Programaciones, nuevaProgramacion]);
-};
+  };
 
+
+  public agregarProgramacion(event:  Event) {
+    let tag = event.target as HTMLInputElement
+    let cuerpo = {
+      UsuarioId: this.usuarioId,
+      EstadoProgramacion:  this.estadoProgramacion,
+      SolicitudId:  this.solicitudId,
+    }
+    this.http.post('http://localhost/programaciones', cuerpo).subscribe(
+      () => {
+      //this.Usuarios.update((Usuarios) => [...Usuarios, cuerpo]);
+    }
+  );
+  };
+
+  public actualizarProgramacion( event:  Event) {
+  
+    let tag = event.target as HTMLInputElement
+    let cuerpo = {
+      UsuarioId: this.usuarioId,
+      EstadoProgramacion: this.estadoProgramacion, 
+      SolicitudId: this.solicitudId,
+
+   
+    }
+    console.log(cuerpo)
+  
+   this.http.put('http://localhost/programaciones/' +  this.programacionId, cuerpo).subscribe(
+      () => {
+      //const nuevaUsuario = Usuario as Usuario;
+     //this.Usuarios.update((Usuarios) => [...Usuarios, cuerpo]);
+    }
+  );
+  };
+
+
+  public borrarProgramacion() {
+    this.http.delete('http://localhost/programaciones/' + this.programacionId).subscribe(() => {
+     // this.Usuarios.update(Usuarios) => Usuarios.filter((Usuario) => Usuario.UsuarioId !== this.usuarioId));
+    });
+  };
 }
 
