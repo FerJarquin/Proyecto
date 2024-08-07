@@ -1,13 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { Solicitud } from '../../model/solicitudes';
+import { Programacion } from '../../model/programaciones';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms'
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-solicitudes',
   standalone: true,
-  imports: [JsonPipe, FormsModule ],
+  imports: [JsonPipe, FormsModule,CommonModule ],
   templateUrl: './solicitudes.component.html',
   styleUrl: './solicitudes.component.css'
 })
@@ -22,6 +24,7 @@ export class SolicitudesComponent {
   public comentarioSolicitud: String = '';
   public clienteId: String = '';
   public servicioId: String = '';
+  public estadoProgramacion: String = '';
 
 
   printInputs() {
@@ -30,11 +33,16 @@ export class SolicitudesComponent {
     console.log('fechaCita:', this.fechaCita);
     console.log('comentarioSolicitud:', this.comentarioSolicitud);
     console.log('clienteId:', this.clienteId);    
-    console.log('servicioId:', this.servicioId);    
+    console.log('servicioId:', this.servicioId);   
+    this.obtenerEstadoProgramacion("38");
+
   }
 
 
   public Solicitudes = signal<Solicitud[]>([]); 
+
+  public Programaciones = signal<Programacion[]>([]); 
+
 
   constructor(private http: HttpClient) {
     this.metodoGETSolicitudes();
@@ -80,12 +88,16 @@ export class SolicitudesComponent {
 };
 
 public agregarSolicitud(event:  Event) {
+
+  console.log(this.fechaCita)
+
   let tag = event.target as HTMLInputElement
+
   let cuerpo = {
- 
     ComentarioSolicitud: this.comentarioSolicitud,
     ClienteId: this.clienteId, 
-    ServicioId : this.servicioId
+    ServicioId : this.servicioId,
+    FechaCita : this.fechaCita
 
   }
 
@@ -99,7 +111,6 @@ public agregarSolicitud(event:  Event) {
 
 
 public actualizarSolicitud( event:  Event) {
-  
   let tag = event.target as HTMLInputElement
   let cuerpo = {
     FechaSolicitud: this.fechaSolicitud,
@@ -118,13 +129,36 @@ public actualizarSolicitud( event:  Event) {
 );
 };
 
-
-
 public borrarSolicitud() {
   this.http.delete('http://localhost/solicitudes/' + this.solicitudId).subscribe(() => {
    // this.Usuarios.update(Usuarios) => Usuarios.filter((Usuario) => Usuario.UsuarioId !== this.usuarioId));
   });
 };
+
+
+seleccionarSolicitud(solicitud: any) {
+  this.solicitudId = solicitud.SolicitudId;
+  this.fechaSolicitud = solicitud.FechaSolicitud;
+  this.fechaCita = solicitud.FechaCita;
+  this.comentarioSolicitud = solicitud.ComentarioSolicitud;
+  this.clienteId = solicitud.ClienteId;
+  this.servicioId = solicitud.ServicioId;
+  this.obtenerEstadoProgramacion(solicitud.SolicitudId);
+
+}
+
+obtenerEstadoProgramacion(solicitudId: string) {
+  this.http.get(`http://localhost/programaciones/estado/${solicitudId}`)
+    .subscribe((Programaciones: any) => {
+      this.estadoProgramacion = Programaciones.EstadoProgramacion; // Suponiendo que la respuesta tiene un campo 'EstadoProgramacion'
+      console.log('estadoProgramacion:', this.estadoProgramacion);
+    }, error => {
+      console.error('Error al obtener el estado de la programación:', error);
+    });
+}
+
+
+
 
 
 }

@@ -18,13 +18,16 @@
         </div>
 
         <div class="form-group">
-            <label for="fechaSolicitud">Fecha Solicitud</label>
-            <input id="fechaSolicitud" [(ngModel)]="fechaSolicitud" type="text" />
-        </div>
+            <label for="fechaCita">Fecha para la cita</label>
+            <input id="fechaCita" [(ngModel)]="fechaCita" type="date" />
+            <script>
+                // JavaScript opcional si deseas hacer algo con la fecha seleccionada
+                document.getElementById('fechaCita').addEventListener('change', function() {
+                    var fechaSeleccionada = this.value;
+                    console.log('Fecha seleccionada:', fechaSeleccionada);
+                });
+            </script>
 
-        <div class="form-group">
-            <label for="fechaCita">fechaCita</label>
-            <input id="fechaCita" [(ngModel)]="fechaCita" type="text" />
         </div>
 
         <div class="form-group">
@@ -38,25 +41,51 @@
         </div>
 
         <div class="form-group">
-            <label for="servicioId">Servicio Id</label>
-            <input id="servicioId" [(ngModel)]="servicioId" type="text" />
+            <label for="servicioId">Servicio:</label>
+            <select id="servicioId" [(ngModel)]="servicioId">
+                <option value="1">Construcción General (Comercial y Residencial)</option>
+                <option value="2">Remodelación (Comercial y Residencial)</option>
+                <option value="3">Pintura</option>
+                <option value="4">Sistemas Eléctricos</option>
+                <option value="5">Comunicación y Redes</option>
+                <option value="6">Sistema de bombeo</option>
+
+            </select>
         </div>
+
+
 
         <div class="form-group buttons">
             <button (click)="agregarSolicitud($event)">Agregar Solicitud</button> 
             <button (click)="actualizarSolicitud($event)">Actualizar Solicitud</button> 
-
             <button (click)="borrarSolicitud()">Borrar Solicitud</button> 
          
         </div>
     </div>
 
-
-<pre>
-    <code>
-        {{ Solicitudes() | json}}
-    </code>
-</pre>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Solicitud Id</th>
+            <th>Fecha Solicitud</th>
+            <th>Fecha Cita</th>
+            <th>Comentario</th>
+            <th>Cliente Id</th>
+            <th>Servicio Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Solicitud of Solicitudes()" (click)="seleccionarSolicitud(Solicitud)">
+            <td>{{ Solicitud.SolicitudId }}</td>
+            <td>{{ Solicitud.FechaSolicitud }}</td>
+            <td>{{ Solicitud.FechaCita }}</td>
+            <td>{{ Solicitud.ComentarioSolicitud }}</td>
+            <td>{{ Solicitud.ClienteId }}</td>
+            <td>{{ Solicitud.ServicioId }}</td>
+          
+          </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>

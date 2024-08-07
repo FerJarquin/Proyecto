@@ -3,11 +3,14 @@ import { Empleado } from '../../model/empleados';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms'
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-empleados',
   standalone: true,
-  imports: [JsonPipe,FormsModule ],
+  imports: [JsonPipe,FormsModule ,CommonModule ],
   templateUrl: './empleados.component.html',
   styleUrl: './empleados.component.css'
 })
@@ -27,8 +30,13 @@ export class EmpleadosComponent {
 
   public Empleados = signal<Empleado[]>([]); 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.metodoGETEmpleados();
+
+    // if (!false){
+    //   this.router.navigate(['']);
+    // }
+
   };
 
   public metodoGETEmpleados() {
@@ -71,6 +79,7 @@ public agregarEmpleado(event:  Event) {
 
   this.http.post('http://localhost/empleados', cuerpo).subscribe(
     () => {
+      
     // const nuevaProvincia = Provincia as Provincia;
    //this.Empleados.update((Empleados) => [...Empleados, cuerpo]);
   }
@@ -101,6 +110,11 @@ public borrarEmpleado() {
   });
 };
 
+seleccionarEmpleado(empleado: any) {
+  this.empleadoId = empleado.EmpleadoId;
+  this.nombreEmpleado = empleado.NombreEmpleado;
+  this.telefonoEmpleado = empleado.TelefonoEmpleado;
+}
 
 
 

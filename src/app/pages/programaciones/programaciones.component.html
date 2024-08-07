@@ -38,21 +38,34 @@
         </div>
 
         <div class="form-group buttons">
-            <button (click)="agregarProgramacion($event)">Agregar Usuario</button>
-            <button (click)="actualizarProgramacion($event)">Actulizar Usuario</button>
-            <button (click)="borrarProgramacion()">Borrar Usuario</button>
-
-
-
+            <button (click)="actualizarProgramacion($event)">Actulizar Programacion</button>
+            <button (click)="borrarProgramacion()">Borrar Progrmacion</button>
 
         </div>
     </div>
 
-<pre>
-    <code>
-        {{ Programaciones() | json}}
-    </code>
-</pre>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th>programacionId</th>
+            <th>usuarioId</th>
+            <th>estadoProgramacion</th>
+            <th>solicitudId</th>
+            <th>actualizadoEn</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Programacion of Programaciones()" (click)="seleccionarProgramacion(Programacion)">
+            <td>{{ Programacion.ProgramacionId }}</td>
+            <td>{{ Programacion.UsuarioId }}</td>
+            <td>{{ Programacion.EstadoProgramacion }}</td>
+            <td>{{ Programacion.SolicitudId }}</td>
+            <td>{{ Programacion.ActualizadaEn }}</td>
+          </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>

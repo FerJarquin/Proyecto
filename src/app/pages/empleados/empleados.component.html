@@ -36,11 +36,23 @@
         </div>
     </div>
 
-    <pre>
-        <code>
-            {{ Empleados() | json }}
-        </code>
-    </pre>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Empleado of Empleados()" (click)="seleccionarEmpleado(Empleado)">
+            <td>{{ Empleado.EmpleadoId }}</td>
+            <td>{{ Empleado.NombreEmpleado }}</td>
+            <td>{{ Empleado.TelefonoEmpleado }}</td>
+          </tr>
+        </tbody>
+    </table>
+
 
 </body>
 </html>

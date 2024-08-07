@@ -3,13 +3,15 @@ import { Programacion } from '../../model/programaciones';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms'
+import { CommonModule } from '@angular/common';
+
 
 
 
 @Component({
   selector: 'app-programaciones',
   standalone: true,
-  imports: [JsonPipe, FormsModule],
+  imports: [JsonPipe, FormsModule,CommonModule],
   templateUrl: './programaciones.component.html',
   styleUrl: './programaciones.component.css'
 })
@@ -23,9 +25,6 @@ export class ProgramacionesComponent {
   public estadoProgramacion: string = '';
   public solicitudId: string = '';
   public actualizadoEn: string = '';
-
-
- 
 
   printInputs() {
     console.log('programacionId:', this.programacionId);
@@ -110,11 +109,20 @@ export class ProgramacionesComponent {
   );
   };
 
-
   public borrarProgramacion() {
     this.http.delete('http://localhost/programaciones/' + this.programacionId).subscribe(() => {
      // this.Usuarios.update(Usuarios) => Usuarios.filter((Usuario) => Usuario.UsuarioId !== this.usuarioId));
     });
   };
+
+  seleccionarProgramacion(programacion: any) {
+    this.programacionId = programacion.ProgramacionId;
+    this.usuarioId = programacion.UsuarioId;
+    this.estadoProgramacion = programacion.EstadoProgramacion;
+    this.solicitudId = programacion.SolicitudId;
+    this.actualizadoEn = programacion.ActualizadaEn; 
+  }
+
+
 }
 
