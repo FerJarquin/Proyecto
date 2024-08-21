@@ -36,6 +36,7 @@ export const routes: Routes = [
     {
         path: 'logIn',
         component: LogInComponent, 
-    }
+    }, 
+    
     
 ];

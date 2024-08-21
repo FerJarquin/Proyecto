@@ -6,11 +6,28 @@
     
     <!-- Login Form -->
       <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña"> 
-      </form>
-      <input type="submit" class="fadeIn fourth" value="Ingresar">
+        <input type="text"  class="fadeIn second" name="username"
+         placeholder="Correo"
+         autofocus=""
+         [(ngModel)]="Usuario"
+         
+    >
+        <input type="password" name="password" 
+        placeholder="Contraseña" required=""
+         class="fadeIn third"
+         [(ngModel)]="Clave"> 
+      
+        </form>
+
+        
+        <div class="form-group buttons">
+          <button type="submit" (click)="autenticar()" >Login</button>
+          <button type="submit" (click)="desautenticar()" >DesAutenticar</button>
+        </div>
+
+
     
-  
+
+
     </div>
   </div>

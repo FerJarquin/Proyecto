@@ -11,6 +11,17 @@
 <body>
 
     <h2>{{Titulo}}</h2>
+
+
+
+    <ul>
+        @for (Solicitud of Solicitudes(); track Solicitud.SolicitudId) {
+        
+        } @empty {
+              <li>Nada que mostrar.</li>
+          }
+    </ul>
+
     <div class="form-container">
         <div class="form-group">
             <label for="solicitudId">Solicitud Id:</label>
@@ -59,7 +70,7 @@
             <button (click)="agregarSolicitud($event)">Agregar Solicitud</button> 
             <button (click)="actualizarSolicitud($event)">Actualizar Solicitud</button> 
             <button (click)="borrarSolicitud()">Borrar Solicitud</button> 
-         
+            <button (click)="reporte()">Reporte</button> 
         </div>
     </div>
 

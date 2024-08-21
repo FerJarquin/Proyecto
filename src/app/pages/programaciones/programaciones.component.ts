@@ -4,14 +4,15 @@ import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms'
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-programaciones',
   standalone: true,
-  imports: [JsonPipe, FormsModule,CommonModule],
+  imports: [JsonPipe, FormsModule,CommonModule,ReactiveFormsModule ],
   templateUrl: './programaciones.component.html',
   styleUrl: './programaciones.component.css'
 })
@@ -35,9 +36,22 @@ export class ProgramacionesComponent {
 
   public Programaciones = signal<Programacion[]>([]); 
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
+    if (!this.validaAcceso()) {
+      this.router.navigate(['logIn']);
+    }
     this.metodoGETProgramaciones();
   };
+
+  public validaAcceso() {
+    if (String(localStorage.getItem('Rol')) === "Administrador") {
+      return true;
+    }
+    return false;
+  };
+
+
+
 
   public metodoGETProgramaciones() {
     let cuerpo = {};

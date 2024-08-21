@@ -3,11 +3,15 @@ import { Servicio } from '../../model/servicios';
 import { JsonPipe } from '@angular/common'
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [JsonPipe, FormsModule],
+  imports: [JsonPipe, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './servicios.component.html',
   styleUrl: './servicios.component.css'
 })
@@ -32,10 +36,19 @@ export class ServiciosComponent {
   
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,  private router: Router) {
+    if (!this.validaAcceso()) {
+      this.router.navigate(['/logIn']);
+    }
     this.metodoGETServicios();
   };
 
+  public validaAcceso() {
+    if (String(localStorage.getItem('Rol')) === "Administrador") {
+      return true;
+    }
+    return false;
+  };
   
   public metodoGETServicios() {
     let cuerpo = {};

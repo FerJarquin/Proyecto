@@ -11,61 +11,72 @@
 <body>
 
     <h2>{{Titulo}}</h2>
+
+    <ul>
+        @for (Programacion of Programaciones(); track Programacion.ProgramacionId) {
+        
+        } @empty {
+              <li>Nada que mostrar.</li>
+          }
+    </ul>
+
     <div class="form-container">
-        <div class="form-group">
-            <label for="programacionId">Programacion ID:</label>
-            <input id="programacionId" [(ngModel)]="programacionId" type="text" />
-        </div>
+      <div class="form-group">
+          <label for="programacionId">Programacion ID:</label>
+          <input id="programacionId" [(ngModel)]="programacionId" type="text" />
+      </div>
 
-        <div class="form-group">
-            <label for="usuarioId">Usuario ID:</label>
-            <input id="usuarioId" [(ngModel)]="usuarioId" type="text" />
-        </div>
-       
+      <div class="form-group">
+          <label for="usuarioId">Usuario ID:</label>
+          <input id="usuarioId" [(ngModel)]="usuarioId" type="text" />
+      </div>
+     
 
-        <div class="form-group">
-            <label for="estadoProgramacion">Estado Programacion:</label>
-            <select id="estadoProgramacion" [(ngModel)]="estadoProgramacion">
-                <option value="Pendiente">Pendiente</option>
-                <option value="Aprobada">Aprobada</option>
-                <option value="Denegada">Denegada</option>
-            </select>
-        </div>
+      <div class="form-group">
+          <label for="estadoProgramacion">Estado Programacion:</label>
+          <select id="estadoProgramacion" [(ngModel)]="estadoProgramacion">
+              <option value="Pendiente">Pendiente</option>
+              <option value="Aprobada">Aprobada</option>
+              <option value="Denegada">Denegada</option>
+          </select>
+      </div>
 
-        <div class="form-group">
-            <label for="solicitudId">solicitud Id:</label>
-            <input id="solicitudId" [(ngModel)]="solicitudId" type="text" />
-        </div>
+      <div class="form-group">
+          <label for="solicitudId">solicitud Id:</label>
+          <input id="solicitudId" [(ngModel)]="solicitudId" type="text" />
+      </div>
 
-        <div class="form-group buttons">
-            <button (click)="actualizarProgramacion($event)">Actulizar Programacion</button>
-            <button (click)="borrarProgramacion()">Borrar Progrmacion</button>
+      <div class="form-group buttons">
+          <button (click)="actualizarProgramacion($event)">Actulizar Programacion</button>
+          <button (click)="borrarProgramacion()">Borrar Progrmacion</button>
 
-        </div>
+      </div>
     </div>
 
+   <li>
+      <table class="table">
+          <thead>
+            <tr>
+              <th>programacionId</th>
+              <th>usuarioId</th>
+              <th>estadoProgramacion</th>
+              <th>solicitudId</th>
+              <th>actualizadoEn</th>
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let Programacion of Programaciones()" (click)="seleccionarProgramacion(Programacion)">
+              <td>{{ Programacion.ProgramacionId }}</td>
+              <td>{{ Programacion.UsuarioId }}</td>
+              <td>{{ Programacion.EstadoProgramacion }}</td>
+              <td>{{ Programacion.SolicitudId }}</td>
+              <td>{{ Programacion.ActualizadaEn }}</td>
+            </tr>
+          </tbody>
+      </table>
+   </li>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th>programacionId</th>
-            <th>usuarioId</th>
-            <th>estadoProgramacion</th>
-            <th>solicitudId</th>
-            <th>actualizadoEn</th>
-         
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let Programacion of Programaciones()" (click)="seleccionarProgramacion(Programacion)">
-            <td>{{ Programacion.ProgramacionId }}</td>
-            <td>{{ Programacion.UsuarioId }}</td>
-            <td>{{ Programacion.EstadoProgramacion }}</td>
-            <td>{{ Programacion.SolicitudId }}</td>
-            <td>{{ Programacion.ActualizadaEn }}</td>
-          </tr>
-        </tbody>
-    </table>
 
 </body>
 </html>
